@@ -1,25 +1,44 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
-// Clase que modela el concepto de Usuario, la anotacion @Entity le avisa a hibernate que esta clase es persistible
-// el paquete ar.edu.unlam.tallerweb1.modelo esta indicado en el archivo hibernateCOntext.xml para que hibernate
-// busque entities en él
 @Entity
 public class Farmacia {
 
-	// La anotacion id indica que este atributo es el utilizado como clave primaria de la entity, se indica que el valor es autogenerado.
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	// para el resto de los atributo no se usan anotaciones entonces se usa el default de hibernate: la columna se llama igual que
-	// el atributo, la misma admite nulos, y el tipo de dato se deduce del tipo de dato de java.
+	private Long id;	
 	private String nombre;
 	private String telefono;
 	private String diaDeTurno;
+	
+	@ManyToOne (fetch=FetchType.EAGER)
+	@JoinColumn (name="IdDireccion")
+	private Direccion  direccion;	
+	
+	@OneToOne (fetch=FetchType.EAGER)
+	@JoinColumn (name="IdPunto")
+	private Punto punto;
+	
+	public Punto getPunto() {
+		return punto;
+	}
+	public void setPunto(Punto punto) {
+		this.punto = punto;
+	}
+	public Direccion getDireccion() {
+		return direccion;
+	}
+	public void setDireccion(Direccion direccion) {
+		this.direccion = direccion;
+	}
 	public String getNombre() {
 		return nombre;
 	}

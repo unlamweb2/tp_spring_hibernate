@@ -1,6 +1,5 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -8,7 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 
 
 
@@ -19,10 +18,11 @@ public class Barrio {
 	private Long id;	
 	private String nombre;
 	
-	@OneToMany (fetch=FetchType.LAZY)
-	@JoinColumn (name="idBarrio")
-	private List<Direccion> direcciones;
 	
+	@ManyToOne (fetch=FetchType.EAGER)
+	@JoinColumn (name="idComuna")
+	private Comuna comuna;
+		
 	
 	public Long getId() {
 		return id;
@@ -30,8 +30,7 @@ public class Barrio {
 	public void setId(Long id) {
 		this.id = id;		
 	}
-	
-	
+		
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -69,12 +68,12 @@ public class Barrio {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public List<Direccion> getDirecciones() {
-		return direcciones;
-	}
 	
-	public void setDirecciones(List<Direccion> direcciones) {
-		this.direcciones = direcciones;
+	public Comuna getComuna() {
+		return comuna;
+	}
+	public void setComuna(Comuna comuna) {
+		this.comuna = comuna;
 	}
 		
 		
