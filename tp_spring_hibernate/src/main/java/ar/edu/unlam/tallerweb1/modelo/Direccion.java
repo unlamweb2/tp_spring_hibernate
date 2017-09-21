@@ -18,7 +18,7 @@ public class Direccion {
 	private String calle;
 	private String numero;
 	
-	@ManyToOne (fetch=FetchType.LAZY)
+	@ManyToOne (fetch=FetchType.EAGER)
 	@JoinColumn (name="IdBarrio")
 	private Barrio barrio;			
 	

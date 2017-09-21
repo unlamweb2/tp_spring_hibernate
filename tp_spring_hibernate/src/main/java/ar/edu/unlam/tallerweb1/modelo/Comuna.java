@@ -1,24 +1,35 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
-// Clase que modela el concepto de Usuario, la anotacion @Entity le avisa a hibernate que esta clase es persistible
-// el paquete ar.edu.unlam.tallerweb1.modelo esta indicado en el archivo hibernateCOntext.xml para que hibernate
-// busque entities en él
 @Entity
 public class Comuna {
-
-	// La anotacion id indica que este atributo es el utilizado como clave primaria de la entity, se indica que el valor es autogenerado.
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	// para el resto de los atributo no se usan anotaciones entonces se usa el default de hibernate: la columna se llama igual que
-	// el atributo, la misma admite nulos, y el tipo de dato se deduce del tipo de dato de java.
+	private Long id;	
+	
 	private String nombre;
+	
+	@OneToMany (fetch=FetchType.LAZY)
+	@JoinColumn (name="idComuna")
+	private List<Barrio> barrios; 
+	
 					
+	public List<Barrio> getBarrios() {
+		return barrios;
+	}
+	public void setBarrios(List<Barrio> barrios) {
+		this.barrios = barrios;
+	}
 	public Long getId() {
 		return id;
 	}
