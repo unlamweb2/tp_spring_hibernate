@@ -1,6 +1,7 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -13,16 +14,25 @@ import javax.persistence.ManyToOne;
 
 @Entity
 public class Barrio {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;	
 	private String nombre;
 	
 	
-	@ManyToOne (fetch=FetchType.EAGER)
+	@ManyToOne (fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	@JoinColumn (name="idComuna")
 	private Comuna comuna;
-		
+	
+	public Barrio(Long id, String nombre) {		
+		this.id = id;
+		this.nombre = nombre;
+	}
+	
+	public Barrio() {		
+	}
+				
 	
 	public Long getId() {
 		return id;

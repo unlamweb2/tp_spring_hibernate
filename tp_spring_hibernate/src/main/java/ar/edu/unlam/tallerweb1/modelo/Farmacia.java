@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -19,13 +20,24 @@ public class Farmacia {
 	private String telefono;
 	private String diaDeTurno;
 	
-	@ManyToOne (fetch=FetchType.EAGER)
+	@ManyToOne (fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 	@JoinColumn (name="IdDireccion")
 	private Direccion  direccion;	
 	
-	@OneToOne (fetch=FetchType.EAGER)
+	@OneToOne (fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 	@JoinColumn (name="IdPunto")
 	private Punto punto;
+	
+	public Farmacia(Long id, String nombre, String telefono, String diaDeTurno) {
+		this.id = id;
+		this.nombre = nombre;
+		this.telefono = telefono;
+		this.diaDeTurno = diaDeTurno;	
+	}
+	
+	public Farmacia() {		
+	}
+	
 	
 	public Punto getPunto() {
 		return punto;

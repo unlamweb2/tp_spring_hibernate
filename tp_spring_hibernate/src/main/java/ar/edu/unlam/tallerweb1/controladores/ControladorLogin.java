@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -67,4 +68,17 @@ public class ControladorLogin {
 	public ModelAndView inicio() {
 		return new ModelAndView("redirect:/login");
 	}
+	
+		 @RequestMapping(path="/sumar/{n1}/mas/{n2}",method = RequestMethod.GET)
+		 public ModelAndView Calcular(@PathVariable String n1,  @PathVariable String n2)
+		   {	 ModelMap mp = new ModelMap();
+			 try{
+			 int result =Integer.parseInt (n1) + Integer.parseInt (n2);			 		 
+				mp.put("mensaje","El resultado de sumar " + n1 + " y " + n2 + " es: " + result  );
+				
+			 }catch (Exception ex)
+			 {	 mp.put("mensaje","error al realizar la suma");					 
+			 }
+			 return new ModelAndView("calcular",mp);				 
+		 }
 }

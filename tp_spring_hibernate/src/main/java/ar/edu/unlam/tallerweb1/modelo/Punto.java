@@ -11,10 +11,19 @@ public class Punto {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	
+	private Long id;	
 	private String latitud;
 	private String longitud;
+	
+	public Punto(Long id, String latitud, String longitud) {		
+		this.id = id;
+		this.latitud = latitud;
+		this.longitud = longitud;
+	}
+	
+	public Punto() {	
+	}
+	
 	
 	public Long getId() {
 		return id;

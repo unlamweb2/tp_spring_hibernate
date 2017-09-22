@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -18,9 +19,18 @@ public class Direccion {
 	private String calle;
 	private String numero;
 	
-	@ManyToOne (fetch=FetchType.EAGER)
+	@ManyToOne (fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 	@JoinColumn (name="IdBarrio")
-	private Barrio barrio;			
+	private Barrio barrio;	
+	
+	public Direccion(Long id, String calle, String numero) {		
+		this.id = id;
+		this.calle = calle;
+		this.numero = numero;	
+	}
+	
+	public Direccion() {	
+	}
 	
 	public Long getId() {
 		return id;
@@ -32,6 +42,7 @@ public class Direccion {
 	public String getCalle() {
 		return calle;
 	}
+	
 	public void setCalle(String calle) {
 		this.calle = calle;
 	}

@@ -7,6 +7,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import javax.inject.Inject;
+import javax.transaction.Transaction;
 
 // implelemtacion del DAO de usuarios, la anotacion @Repository indica a Spring que esta clase es un componente que debe
 // ser manejado por el framework, debe indicarse en applicationContext que busque en el paquete ar.edu.unlam.tallerweb1.dao
@@ -30,6 +31,29 @@ public class UsuarioDaoImpl implements UsuarioDao {
 				.add(Restrictions.eq("email", usuario.getEmail()))
 				.add(Restrictions.eq("password", usuario.getPassword()))
 				.uniqueResult();
+	}
+	
+	@Override
+	public void insertarUsuario(Usuario usuario) {
+		Transaction tx=null;		
+						
+		final Session session = sessionFactory.getCurrentSession();
+		
+		try {	
+		tx= (Transaction) session.beginTransaction();
+		session.save(usuario);
+		tx.commit();
+		session.close();
+			}
+		catch(Exception e)
+		{		
+			e.printStackTrace();			
+			throw new RuntimeException ("No se pudo guardar");
+		
+			}
+		
+		
+		
 	}
 
 }
