@@ -23,6 +23,14 @@
 					<form:input path="password" type="password" id="password" class="form-control"/>     		  
 					
 					<button class="btn btn-lg btn-primary btn-block" Type="Submit"/>Login</button>
+																	
+				</form:form>
+				
+				<form:form action="calculadora" method="POST" >
+			    	<h3 class="form-signin-heading">Calculadora</h3>
+					<hr class="colorgraph"><br>
+				 
+					<button class="btn btn-lg btn-primary "  action Type="Submit"/>Calculadora</button>
 				</form:form>
 
 				<%--Bloque que es visible si el elemento error no está vacío	--%>

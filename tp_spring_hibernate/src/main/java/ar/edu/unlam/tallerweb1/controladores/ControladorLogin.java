@@ -69,16 +69,21 @@ public class ControladorLogin {
 		return new ModelAndView("redirect:/login");
 	}
 	
-		 @RequestMapping(path="/sumar/{n1}/mas/{n2}",method = RequestMethod.GET)
-		 public ModelAndView Calcular(@PathVariable String n1,  @PathVariable String n2)
-		   {	 ModelMap mp = new ModelMap();
-			 try{
-			 int result =Integer.parseInt (n1) + Integer.parseInt (n2);			 		 
-				mp.put("mensaje","El resultado de sumar " + n1 + " y " + n2 + " es: " + result  );
-				
-			 }catch (Exception ex)
-			 {	 mp.put("mensaje","error al realizar la suma");					 
-			 }
-			 return new ModelAndView("calcular",mp);				 
+	 @RequestMapping(path="/sumar/{n1}/mas/{n2}",method = RequestMethod.GET)
+	 public ModelAndView Calcular(@PathVariable String n1,  @PathVariable String n2)
+	   {	 ModelMap mp = new ModelMap();
+		 try{
+		 int result =Integer.parseInt (n1) + Integer.parseInt (n2);			 		 
+			mp.put("mensaje","El resultado de sumar " + n1 + " y " + n2 + " es: " + result  );
+			
+		 }catch (Exception ex)
+		 {	 mp.put("mensaje","error al realizar la suma");					 
 		 }
+		 return new ModelAndView("calcular1",mp);				 
+	 }
+	 
+	/*	@RequestMapping(path = "/calculadora", method = RequestMethod.POST)
+		public ModelAndView IrCalculadora() {
+			return new ModelAndView("calcular");
+		}*/
 }
