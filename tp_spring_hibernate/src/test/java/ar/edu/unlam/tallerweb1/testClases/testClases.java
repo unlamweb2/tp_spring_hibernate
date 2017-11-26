@@ -121,6 +121,7 @@ public class testClases extends SpringTest{
     		Assert.assertEquals(farmacia.getDireccion().getBarrio().getNombre(),"sal Si Puedes");
     		}
           	    	    	      	         	
+    	
     }
     
 }
