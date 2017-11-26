@@ -1,0 +1,13 @@
+language: java
+jdk:
+  - oraclejdk7
+sudo: false
+install: true
+git:
+  depth: 3
+
+script: mvn clean verify
+
+notifications:
+  email:
+    - cesardaniel_@msn.com

@@ -7,6 +7,7 @@ import ar.edu.unlam.tallerweb1.modelo.*;
 import org.hibernate.FetchMode;
 import org.hibernate.criterion.CriteriaSpecification;
 import org.hibernate.criterion.Restrictions;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.test.annotation.Rollback;
@@ -78,6 +79,7 @@ public class testClases extends SpringTest{
     	for (Farmacia farmacia : farm) {
     		System.out.println(farmacia.getNombre());
     		    System.out.println(farmacia.getDiaDeTurno());
+    		    Assert.assertEquals(farmacia.getDiaDeTurno(),"Martes");
     		}
           	    	    	      	         	
     }
@@ -94,9 +96,8 @@ public class testClases extends SpringTest{
     			.add(Restrictions.eq("dir.calle", "Calle 3"))    	   			
     			.list();    	      
     	 
-    	for (Farmacia farmacia : farm) {
-    		System.out.println(farmacia.getNombre());
-    		    System.out.println(farmacia.getDireccion().getCalle());
+    	for (Farmacia farmacia : farm) {    		    		   
+    		    Assert.assertEquals(farmacia.getDireccion().getCalle(),"Calle 3");
     		}
           	    	    	      	         	
     }
@@ -116,9 +117,8 @@ public class testClases extends SpringTest{
     			.setResultTransformer(CriteriaSpecification.DISTINCT_ROOT_ENTITY)
     			.list();    	      
     	 
-    	for (Farmacia farmacia : farm) {
-    		System.out.println(farmacia.getNombre());
-    		    System.out.println(farmacia.getDireccion().getBarrio().getNombre());
+    	for (Farmacia farmacia : farm) {    			
+    		Assert.assertEquals(farmacia.getDireccion().getBarrio().getNombre(),"sal Si Puedes");
     		}
           	    	    	      	         	
     }
