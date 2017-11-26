@@ -6,7 +6,6 @@ install: true
 git:
   depth: 3
 
-script: mvn clean verify
 
 notifications:
   email:
