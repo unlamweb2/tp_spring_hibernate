@@ -1,7 +1,1 @@
-language: java
-jdk:
-  - openjdk7
-
-script: ant build
-
-
+mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
