@@ -1,13 +1,7 @@
 language: java
 jdk:
-  - oraclejdk7
-sudo: false
-install: true
-git:
-  depth: 3
+  - openjdk7
 
-mvn test -Dtest=testClases
+script: ant build
 
-notifications:
-  email:
-    - cesardaniel_@msn.com
+
