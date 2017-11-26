@@ -6,7 +6,7 @@ install: true
 git:
   depth: 3
 
-mvn test
+mvn test -Dtest=testClases
 
 notifications:
   email:
